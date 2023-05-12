@@ -15,15 +15,15 @@
         <p>Please fill in this form to create a Product.</p>
         <hr>
         <label for="name"><b>Product Name</b></label>
-        <input type="text" placeholder="Enter Product Name" name="name" required>
+        <input type="text" [(ngModel)]="productName" placeholder="Enter Product Name" name="name" required>
   
         <label for="desc"><b>Product Description</b></label>
-        <input type="text" placeholder="Enter Product description" name="desc" required>
+        <input type="text" [(ngModel)]="productDescription" placeholder="Enter Product description" name="desc" required>
   
       
         <div class="clearfix">
           <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-          <button type="submit" class="signupbtn">Add</button>
+          <button type="button" (click)="addProduct()">Add</button>
         </div>
       </div>
     </form>
