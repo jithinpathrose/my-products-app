@@ -8,23 +8,40 @@
 
 <div class="tab-container">
   <ul class="tab-list">
-    <li class="tab-item active" (click)="selectTab(1)" [ngClass]="{ 'active': selectedTab === 1 }">Add</li>
-    <li class="tab-item" (click)="selectTab(3)" [ngClass]="{ 'active': selectedTab === 3 }">Search</li>
-    <li class="tab-item" (click)="selectTab(2)" [ngClass]="{ 'active': selectedTab === 2 }">All</li>
+    <li class="tab-item active" (click)="selectTab(1)" [ngClass]="{ 'active': selectedTab === 1 }">Add A New Product</li>
+    <li class="tab-item" (click)="selectTab(3)" [ngClass]="{ 'active': selectedTab === 3 }">Search For a product</li>
+    <li class="tab-item" (click)="selectTab(2)" [ngClass]="{ 'active': selectedTab === 2 }">All Products</li>
    
   </ul>
   <div class="tab-content">
     <div class="tab-pane" [class.active]="selectedTab === 1">
       <!-- Content for Tab 1 -->
-      <span class="end">A new Product ?
-        <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Add Product</button>
-        </span>
+    
+      <div id="id01" >
+        
+          <div class="container">
+            <h1>Onboard Product</h1>
+            <p>Please fill in this form to create a Product.</p>
+            <hr>
+            <label for="name"><b>Product Name</b></label>
+            <input type="text" [(ngModel)]="product.productName" placeholder="Enter Product Name" name="name" required>
+      
+            <label for="desc"><b>Product Description</b></label>
+            <input type="text" [(ngModel)]="product.productDescription" placeholder="Enter Product description" name="desc" required>
+      
+          
+            <div class="clearfix">
+             <button type="button" (click)="addProduct()" (click)="showAlert()">Add</button>
+            </div>
+          </div>
+      </div>
     </div>
+
     <div class="tab-pane" [class.active]="selectedTab === 2">
       <!-- Content for Tab 2 -->
-      <div class="col-md-3 mb-4"> All Products
-          <span class="text-dark mt-3" *ngFor="let user of products">
-            {{ user.productName }}
+      <div > <div></div>
+          <span class="modal-content" *ngFor="let user of products">
+            <div class="box">{{ user.productName }} - {{ user.productDescription }} </div>
           </span>
       </div>
     </div>
@@ -41,18 +58,18 @@
       
         <label for="stud"><b>Student</b></label>
         <input type="checkbox" [(ngModel)]="isStudent"  name="stud" required>
-      
+      </div>
       
         <div class="clearfix">
          <button type="button" (click)="findMyProducts()">Search</button>
 
-         <div class="col-md-3 mb-4">
+         <div id="result">
             <span class="text-dark mt-3" *ngFor="let user of myproducts">
-              {{ user.productName }} 
+              <div class="box">{{ user.productName }} - {{ user.productDescription }} </div>
             </span>
         </div>
     </div>
-  </div>
+  
 </div>
 
 
@@ -69,26 +86,7 @@
  
   
   
-  <div id="id01" class="modal">
-    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-    <form class="modal-content" action="/action_page.php">
-      <div class="container">
-        <h1>Onboard Product</h1>
-        <p>Please fill in this form to create a Product.</p>
-        <hr>
-        <label for="name"><b>Product Name</b></label>
-        <input type="text" [(ngModel)]="product.productName" placeholder="Enter Product Name" name="name" required>
   
-        <label for="desc"><b>Product Description</b></label>
-        <input type="text" [(ngModel)]="product.productDescription" placeholder="Enter Product description" name="desc" required>
-  
-      
-        <div class="clearfix">
-         <button type="button" (click)="addProduct()" onclick="document.getElementById('id01').style.display='none'">Add</button>
-        </div>
-      </div>
-    </form>
-  </div>
   
   <script>
   // Get the modal

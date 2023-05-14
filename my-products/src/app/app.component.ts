@@ -43,6 +43,20 @@ export class AppComponent implements OnInit{
     });
   }
 
+  public showAlert(): void{
+    window.alert("Product Added");
+    this.clearForm();
+  }
+
+  clearForm() {
+    const form = document.getElementById('id01') as HTMLFormElement;
+    const inputs = form.getElementsByTagName('input');
+
+    for (let i = 0; i < inputs.length; i++) {
+      inputs[i].value = '';
+    }
+  }
+
   public findMyProducts(): void{
     this.productService.find(this.income, this.age, this.isStudent).subscribe(
       data => {
