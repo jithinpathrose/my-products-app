@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from './product.service';
 import { Product } from './product';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -9,21 +8,46 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
+  
   title = 'my-products';
-  productName: string = '';
-  productDescription: string = '';
+  products: Product[] = [];
+  myproducts: Product[] = [];
+  product: Product;
+  income:number;
+  age: number;
+  isStudent:boolean;
+  selectedTab: number = 1;
 
-  constructor(private productService: ProductService){}
-
-  ngOnInit(): void {
+  selectTab(tabIndex: number) {
+    this.selectedTab = tabIndex;
+  }
+  
+  constructor(private productService: ProductService){
+    this.product = new Product('', '');
+    this.income = 0;
+    this.age = 0;
+    this.isStudent = false;
   }
 
-  public addProduct(): String{
-    const productObj: Product ={
-      name : this.productName,
-      description: this.productDescription
-    };
-    console.log("called component");
-    return this.productService.addProduct(productObj);
+  ngOnInit(): void {
+    this.productService.findAll().subscribe(data => {
+      this.products = data;
+    });
+  }
+
+  public addProduct(): void{
+  
+    console.log("called component"+ this.product.productName);
+    this.productService.addProduct(this.product).subscribe(data => {
+      this.products.push(data);
+    });
+  }
+
+  public findMyProducts(): void{
+    this.productService.find(this.income, this.age, this.isStudent).subscribe(
+      data => {
+        this.myproducts = data;
+      }
+    );
   }
 }

@@ -1,11 +1,73 @@
-<html>
-<div >Product Management</div>
-
-<body>
-
-  <h2>A new Product ?</h2>
+<div >
+<div >
+  <h2 class="container">
+    Product Management 
+  </h2>
   
-  <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Add Product</button>
+</div>
+
+<div class="tab-container">
+  <ul class="tab-list">
+    <li class="tab-item active" (click)="selectTab(1)" [ngClass]="{ 'active': selectedTab === 1 }">Add</li>
+    <li class="tab-item" (click)="selectTab(3)" [ngClass]="{ 'active': selectedTab === 3 }">Search</li>
+    <li class="tab-item" (click)="selectTab(2)" [ngClass]="{ 'active': selectedTab === 2 }">All</li>
+   
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane" [class.active]="selectedTab === 1">
+      <!-- Content for Tab 1 -->
+      <span class="end">A new Product ?
+        <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Add Product</button>
+        </span>
+    </div>
+    <div class="tab-pane" [class.active]="selectedTab === 2">
+      <!-- Content for Tab 2 -->
+      <div class="col-md-3 mb-4"> All Products
+          <span class="text-dark mt-3" *ngFor="let user of products">
+            {{ user.productName }}
+          </span>
+      </div>
+    </div>
+ <div class="tab-pane" [class.active]="selectedTab === 3">
+        <!-- Content for Tab 3 -->
+      <div class="container">
+        <h1>Find Eligible Products</h1>
+        <hr>
+        <label for="name"><b>Your average income (In Euro)</b></label>
+        <input type="text" [(ngModel)]="income" placeholder="Enter income here" name="name" required>
+      
+        <label for="desc"><b>Your age</b></label>
+        <input type="text" [(ngModel)]="age" placeholder="Enter your age" name="desc" required>
+      
+        <label for="stud"><b>Student</b></label>
+        <input type="checkbox" [(ngModel)]="isStudent"  name="stud" required>
+      
+      
+        <div class="clearfix">
+         <button type="button" (click)="findMyProducts()">Search</button>
+
+         <div class="col-md-3 mb-4">
+            <span class="text-dark mt-3" *ngFor="let user of myproducts">
+              {{ user.productName }} 
+            </span>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+  </div>
+
+ <!-- Categories 
+ <div class="row mt-6">
+      All Products
+  </div>
+-->
+
+
+
+ 
+  
   
   <div id="id01" class="modal">
     <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
@@ -15,15 +77,14 @@
         <p>Please fill in this form to create a Product.</p>
         <hr>
         <label for="name"><b>Product Name</b></label>
-        <input type="text" [(ngModel)]="productName" placeholder="Enter Product Name" name="name" required>
+        <input type="text" [(ngModel)]="product.productName" placeholder="Enter Product Name" name="name" required>
   
         <label for="desc"><b>Product Description</b></label>
-        <input type="text" [(ngModel)]="productDescription" placeholder="Enter Product description" name="desc" required>
+        <input type="text" [(ngModel)]="product.productDescription" placeholder="Enter Product description" name="desc" required>
   
       
         <div class="clearfix">
-          <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-          <button type="button" (click)="addProduct()">Add</button>
+         <button type="button" (click)="addProduct()" onclick="document.getElementById('id01').style.display='none'">Add</button>
         </div>
       </div>
     </form>
@@ -40,6 +101,4 @@
     }
   }
   </script>
-  
-  </body>
-  </html>
+  </div>
