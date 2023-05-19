@@ -40,6 +40,10 @@ export class AppComponent implements OnInit{
     console.log("called component"+ this.product.productName);
     this.productService.addProduct(this.product).subscribe(data => {
       this.products.push(data);
+    },
+    error => {
+      console.error("An error occurred while adding the product:", error);
+      window.alert("Sorry! Product Add failed. Try another Product");
     });
   }
 
