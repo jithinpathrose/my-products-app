@@ -41,7 +41,7 @@
       <!-- Content for Tab 2 -->
       <div > <div></div>
           <span class="modal-content" *ngFor="let user of products">
-            <div class="box">{{ user.productName }} - {{ user.productDescription }} </div>
+            <div class="box">{{ user.productName }} <div class="innerbox">{{ user.productDescription }} </div></div>
           </span>
       </div>
     </div>
@@ -64,8 +64,8 @@
          <button type="button" (click)="findMyProducts()">Search</button>
 
          <div id="result">
-            <span class="text-dark mt-3" *ngFor="let user of myproducts">
-              <div class="box">{{ user.productName }} - {{ user.productDescription }} </div>
+            <span class="modal-content" *ngFor="let user of myproducts">
+              <div class="box">{{ user.productName }} <div class="innerbox">{{ user.productDescription }} </div> </div>
             </span>
         </div>
     </div>

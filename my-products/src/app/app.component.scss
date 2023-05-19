@@ -59,10 +59,17 @@ button:hover {
 
   width: 200px;
   height: 50px;
-  background-color: #887bcf;
-  border: 1px solid #ccc;
+  background-color: #f8f8fa;
   border-radius: 5px;
+  width: auto;
+  height: auto;
+  padding: 10px;
 
+}
+
+.innerbox{
+
+  padding: 20px;
 }
 
 .end {
@@ -93,7 +100,7 @@ color: #f1f1f1;
 .modal-content {
   background-color: #fefefe;
   margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-  border: 1px solid #888;
+  border: 1px solid white;
   width: 80%; /* Could be more or less, depending on screen size */
 }
 
